@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grai Web</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#0b0b12;
+  --card:rgba(15,25,18,0.75);
+  --line:#1a2a1f;
+  --accent:#22c55e;
+  --glow:#22c55e55;
+  --text:#f1f5f9;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:'Poppins',sans-serif;
+  background:radial-gradient(circle at top,#1a0f15,#0b0b12 60%);
+  color:var(--text);
+}
+
+/* HEADER */
+.header{
+  text-align:center;
+  padding:50px 15px 20px;
+}
+.header h1{
+  margin:0;
+  font-size:36px;
+  color:var(--accent);
+  text-shadow:0 0 25px var(--glow);
+}
+.header p{
+  opacity:.6;
+  margin-top:8px;
+}
+
+/* SEARCH */
+.search{
+  max-width:650px;
+  margin:25px auto;
+  padding:0 15px;
+}
+.search input{
+  width:100%;
+  padding:14px 18px;
+  border-radius:12px;
+  border:1px solid var(--line);
+  background:rgba(25,15,20,0.9);
+  color:white;
+  font-size:15px;
+  outline:none;
+}
+.search input:focus{
+  border-color:var(--accent);
+  box-shadow:0 0 15px var(--glow);
+}
+
+/* GRID */
+.grid{
+  max-width:1100px;
+  margin:30px auto 80px;
+  padding:0 15px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:25px;
+}
+
+/* CARD */
+.card{
+  position:relative;
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:18px;
+  backdrop-filter:blur(12px);
+  transition:.3s;
+  box-shadow:0 0 25px #00000050;
+}
+.card:hover{
+  transform:translateY(-6px);
+  border-color:var(--accent);
+  box-shadow:0 0 35px var(--glow);
+}
+
+/* STATUS */
+.status{
+  position:absolute;
+  top:14px;
+  right:14px;
+  padding:6px 12px;
+  border-radius:20px;
+  font-size:11px;
+  font-weight:600;
+  border:1px solid;
+}
+.status.work{
+  background:#16a34a22;
+  color:#22c55e;
+  border-color:#22c55e55;
+}
+.status.notwork{
+  background:#dc262622;
+  color:#ef4444;
+  border-color:#ef444455;
+}
+
+/* CONTENT */
+.content{
+  padding:24px;
+}
+.title{
+  font-size:20px;
+  font-weight:600;
+  color:var(--accent);
+}
+.desc{
+  font-size:13px;
+  opacity:.7;
+  margin:6px 0 14px;
+}
+
+textarea{
+  width:100%;
+  height:95px;
+  resize:none;
+  border-radius:10px;
+  border:1px solid var(--line);
+  background:#140c12;
+  color:#fca5a5;
+  padding:12px;
+  font-size:13px;
+}
+
+/* BUTTON */
+.copy-btn{
+  margin-top:14px;
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:10px;
+  background:linear-gradient(90deg,#3aad01,#5bb91c);
+  color:white;
+  font-weight:600;
+  cursor:pointer;
+}
+.copy-btn:hover{
+  box-shadow:0 0 20px var(--glow);
+}
+
+/* FOOTER */
+.footer{
+  text-align:center;
+  padding:30px;
+  opacity:.4;
+  font-size:13px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  <h1>GRAI WEB</h1>
+  <p>Fast Copy Script - One Click</p>
+</div>
+
+<div class="search">
+  <input type="text" id="search" placeholder="🔍 Tìm Script...">
+</div>
+
+<div class="grid">
+
+  <!-- SCRIPT 1 -->
+  <div class="card" data-name="Blox Fruits Main" data-status="work">
+    <div class="status"></div>
+    <div class="content">
+      <div class="title">Blox Fruits Main</div>
+      <div class="desc">Click để copy script</div>
+      <textarea readonly>loadstring(game:HttpGet("LINK_SCRIPT_CUA_BAN"))()</textarea>
+      <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+    </div>
+  </div>
+
+  <!-- SCRIPT 2 -->
+  <div class="card" data-name="Auto Bounty" data-status="notwork">
+    <div class="status"></div>
+    <div class="content">
+      <div class="title">Auto Bounty</div>
+      <div class="desc">Click để copy script</div>
+      <textarea readonly>-- script của bạn</textarea>
+      <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  © Grai Team
+</div>
+
+<script>
+function copyScript(btn){
+  const textarea = btn.parentElement.querySelector("textarea");
+  textarea.select();
+  document.execCommand("copy");
+  btn.innerText = "ĐÃ COPY ✓";
+  setTimeout(()=>btn.innerText="COPY SCRIPT",1500);
+}
+
+/* SEARCH */
+document.getElementById("search").addEventListener("input", function(){
+  const val = this.value.toLowerCase();
+  document.querySelectorAll(".card").forEach(card=>{
+    const name = card.getAttribute("data-name").toLowerCase();
+    card.style.display = name.includes(val) ? "block" : "none";
+  });
+});
+
+/* STATUS */
+document.querySelectorAll(".card").forEach(card=>{
+  const st = card.getAttribute("data-status");
+  const badge = card.querySelector(".status");
+  if(st === "work"){
+    badge.classList.add("work");
+    badge.innerText = "● WORKING";
+  }else{
+    badge.classList.add("notwork");
+    badge.innerText = "● NOT WORKING";
+  }
+});
+</script>
+
+</body>
+</html>
