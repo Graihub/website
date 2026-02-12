@@ -1054,6 +1054,17 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v4/loaders/447e148472147a
     </div>
   </div>
 
+  <!-- SCRIPT 41 -->
+  <div class="card" data-name="Coming Soon" data-status="soon">
+    <div class="status"></div>
+    <div class="content">
+      <div class="title">Coming Soon</div>
+      <div class="desc">soon</div>
+      <textarea readonly></textarea>
+      <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+    </div>
+  </div>
+
 </div>
 
 <div class="footer">
@@ -1083,12 +1094,17 @@ document.querySelectorAll(".card").forEach(card=>{
   const st = card.getAttribute("data-status");
   const badge = card.querySelector(".status");
   if(st === "work"){
-    badge.classList.add("work");
-    badge.innerText = "● WORKING";
-  }else{
-    badge.classList.add("notwork");
-    badge.innerText = "● NOT WORKING";
-  }
+  badge.classList.add("work");
+  badge.innerText = "● WORKING";
+}
+else if(st === "notwork"){
+  badge.classList.add("notwork");
+  badge.innerText = "● NOT WORKING";
+}
+else if(st === "soon"){
+  badge.classList.add("soon");
+  badge.innerText = "● COMING SOON";
+}
 });
 </script>
 
