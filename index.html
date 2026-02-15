@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -6,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Grai Web</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
 :root{
@@ -16,19 +15,59 @@
   --accent:#22c55e;
   --glow:#22c55e55;
   --text:#f1f5f9;
+  --soft-pink:#1e1a1f;
 }
 *{box-sizing:border-box}
 body{
   margin:0;
   font-family:'Poppins',sans-serif;
-  background:radial-gradient(circle at top,#1a0f15,#0b0b12 60%);
+  background:radial-gradient(circle at top,#1a0f15,#0b0b12 80%);
   color:var(--text);
+  min-height:100vh;
 }
+
+/* NAVIGATION */
+.nav {
+  display:flex;
+  justify-content:center;
+  gap:30px;
+  padding:30px 20px 0;
+  flex-wrap:wrap;
+}
+.nav-link {
+  color:var(--text);
+  text-decoration:none;
+  font-weight:600;
+  padding:8px 24px;
+  border-radius:40px;
+  border:1px solid var(--line);
+  background:rgba(10,20,12,0.6);
+  backdrop-filter:blur(8px);
+  transition:0.2s;
+  letter-spacing:1px;
+  font-size:15px;
+}
+.nav-link.active,
+.nav-link:hover {
+  background:var(--accent);
+  color:black;
+  border-color:var(--accent);
+  box-shadow:0 0 25px var(--glow);
+}
+/* PAGES */
+.page {
+  display:none;
+  animation:fade 0.25s ease;
+}
+.page.active-page {
+  display:block;
+}
+@keyframes fade {from{opacity:0.3}to{opacity:1}}
 
 /* HEADER */
 .header{
   text-align:center;
-  padding:50px 15px 20px;
+  padding:30px 15px 20px;
 }
 .header h1{
   margin:0;
@@ -62,7 +101,7 @@ body{
   box-shadow:0 0 15px var(--glow);
 }
 
-/* GRID */
+/* GRID (scripts) */
 .grid{
   max-width:1100px;
   margin:30px auto 80px;
@@ -109,8 +148,11 @@ body{
   color:#ef4444;
   border-color:#ef444455;
 }
-
-/* CONTENT */
+.status.soon{
+  background:#6366f122;
+  color:#a78bfa;
+  border-color:#818cf855;
+}
 .content{
   padding:24px;
 }
@@ -124,7 +166,6 @@ body{
   opacity:.7;
   margin:6px 0 14px;
 }
-
 textarea{
   width:100%;
   height:95px;
@@ -137,7 +178,6 @@ textarea{
   font-size:13px;
 }
 
-/* BUTTON */
 .copy-btn{
   margin-top:14px;
   width:100%;
@@ -160,119 +200,255 @@ textarea{
   opacity:.4;
   font-size:13px;
 }
+
+/* ---------- PARTNER & ABOUT PAGE ---------- */
+.partner-grid, .about-wrap {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+.partner-card {
+  background:rgba(15,25,20,0.7);
+  backdrop-filter:blur(12px);
+  border:1px solid #2a3a2f;
+  border-radius:24px;
+  padding:30px 25px;
+  margin-bottom:30px;
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:30px;
+  transition:0.2s;
+}
+.partner-card:hover {
+  border-color:var(--accent);
+  box-shadow:0 0 30px var(--glow);
+}
+.partner-avatar {
+  width:90px;
+  height:90px;
+  background:#1f3a2a;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:38px;
+  font-weight:700;
+  color:var(--accent);
+  border:2px solid var(--accent);
+  box-shadow:0 0 30px var(--glow);
+  text-transform:uppercase;
+}
+.partner-info {
+  flex:1;
+}
+.partner-info h3 {
+  margin:0 0 8px;
+  font-size:28px;
+  font-weight:700;
+  color:var(--accent);
+  letter-spacing:1px;
+}
+.partner-tag {
+  display:inline-block;
+  background:#22c55e30;
+  padding:5px 18px;
+  border-radius:50px;
+  font-size:13px;
+  font-weight:600;
+  border:1px solid #22c55e80;
+  margin-bottom:10px;
+}
+.partner-desc {
+  font-size:15px;
+  opacity:0.9;
+  margin:12px 0;
+}
+.partner-contact {
+  display:flex;
+  gap:20px;
+  margin-top:15px;
+}
+.partner-contact span {
+  background:rgba(0,0,0,0.4);
+  padding:6px 16px;
+  border-radius:30px;
+  border:1px solid var(--line);
+  font-size:13px;
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+}
+
+/* about */
+.about-wrap {
+  background:rgba(12,20,15,0.65);
+  backdrop-filter:blur(12px);
+  border-radius:32px;
+  border:1px solid var(--line);
+  padding:40px 35px;
+  margin-top:20px;
+}
+.about-wrap h2 {
+  color:var(--accent);
+  font-size:32px;
+  margin-top:0;
+  margin-bottom:20px;
+  text-shadow:0 0 10px #22c55e80;
+}
+.about-wrap h4 {
+  color:#b1e6b1;
+  font-size:18px;
+  margin:30px 0 10px;
+  border-left:5px solid var(--accent);
+  padding-left:15px;
+}
+.about-wrap p {
+  line-height:1.8;
+  opacity:0.9;
+}
+.about-stats {
+  display:flex;
+  flex-wrap:wrap;
+  gap:25px;
+  margin:35px 0 15px;
+}
+.stat-item {
+  background:#1e2a1e;
+  border-radius:16px;
+  padding:20px 25px;
+  text-align:center;
+  flex:1 1 150px;
+  border:1px solid #2e4a2e;
+}
+.stat-num {
+  font-size:32px;
+  font-weight:800;
+  color:var(--accent);
+}
+.stat-label {
+  font-size:13px;
+  text-transform:uppercase;
+  opacity:0.8;
+}
+
+hr {
+  border:0.5px solid #2a3a2a;
+  margin:40px 0;
+}
 </style>
 </head>
-
 <body>
 
-<div class="header">
-  <h1>GRAI WEB</h1>
-  <p>Fast Copy Script - One Click</p>
+<!-- ===== ĐIỀU HƯỚNG ===== -->
+<div class="nav">
+  <a href="#" class="nav-link active" data-page="home">HOME</a>
+  <a href="#" class="nav-link" data-page="partner">PARTNER</a>
+  <a href="#" class="nav-link" data-page="about">ABOUT</a>
 </div>
 
-<div class="search">
-  <input type="text" id="search" placeholder="🔍 Tìm Script...">
-</div>
-
-<div class="grid">
-
-  <!-- SCRIPT 1 -->
-  <div class="card" data-name="Bacon Hub Main" data-status="work">
-    <div class="status"></div>
-    <div class="content">
-      <div class="title">Bacon Hub Main</div>
-      <div class="desc">Click để copy script</div>
-      <textarea readonly>repeat wait() until game:IsLoaded() and game.Players.LocalPlayer 
-getgenv().team = "Pirates" -- Pirates or Marines
-loadstring(game:HttpGet("https://raw.githubusercontent.com/vinh129150/hack/refs/heads/main/BaconHub.lua"))()</textarea>
-      <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
-    </div>
+<!-- ===== TRANG CHỦ (SCRIPTS) ===== -->
+<div id="page-home" class="page active-page">
+  <div class="header">
+    <h1>GRAI WEB</h1>
+    <p>Fast Copy Script - One Click</p>
   </div>
-
-  <!-- SCRIPT 2 -->
-  <div class="card" data-name="Bacon Hub Hop Boss" data-status="work">
-    <div class="status"></div>
-    <div class="content">
-      <div class="title">Bacon Hub Hop Boss</div>
-      <div class="desc">Click để copy script</div>
-      <textarea readonly>repeat wait() until game:IsLoaded() and game.Players.LocalPlayer 
+  
+  <div class="search">
+    <input type="text" id="search" placeholder="🔍 Tìm Script...">
+  </div>
+  
+  <div class="grid">
+    <!-- SCRIPT 1 -->
+    <div class="card" data-name="Bacon Hub Main" data-status="work">
+      <div class="status"></div>
+      <div class="content">
+        <div class="title">Bacon Hub Main</div>
+        <div class="desc">Click để copy script</div>
+        <textarea readonly>repeat wait() until game:IsLoaded() and game.Players.LocalPlayer 
+getgenv().team = "Pirates" -- Pirates or Marines
+loadstring(game:HttpGet("https://script.tranvinh.site/loader"))()</textarea>
+        <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+      </div>
+    </div>
+    <!-- SCRIPT 2 -->
+    <div class="card" data-name="Bacon Hub Hop Boss" data-status="work">
+      <div class="status"></div>
+      <div class="content">
+        <div class="title">Bacon Hub Hop Boss</div>
+        <div class="desc">Click để copy script</div>
+        <textarea readonly>repeat wait() until game:IsLoaded() and game.Players.LocalPlayer 
 getgenv().team = "Pirates" -- Pirates or Marines
 loadstring(game:HttpGet("https://raw.githubusercontent.com/vinh129150/hack/refs/heads/main/HopBoss.lua"))()</textarea>
-      <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+        <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+      </div>
     </div>
-  </div>
-
- <!-- SCRIPT 3 -->
-  <div class="card" data-name="Bacon Hub Kaitun Boss" data-status="work">
-    <div class="status"></div>
-    <div class="content">
-      <div class="title">Bacon Hub Kaitun Boss</div>
-      <div class="desc">Click để copy script</div>
-      <textarea readonly>getgenv().SettingFarm = {
+    <!-- SCRIPT 3 -->
+    <div class="card" data-name="Bacon Hub Kaitun Boss" data-status="work">
+      <div class="status"></div>
+      <div class="content">
+        <div class="title">Bacon Hub Kaitun Boss</div>
+        <div class="desc">Click để copy script</div>
+        <textarea readonly>getgenv().SettingFarm = {
     ["Team"] = "Pirates", -- Pirates or Marines
     ["Boss"] = "", -- Rip_indra , Darkbread, Doughking , Tyrant , Cursed_captian
     ["FPS"] = "false", -- false or true
 }
 loadstring(game:HttpGet("https://raw.githubusercontent.com/vinh129150/hack/refs/heads/main/KaitunBoss.lua"))()</textarea>
-      <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+        <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+      </div>
     </div>
-  </div>
-
-   <!-- SCRIPT 4 -->
-  <div class="card" data-name="Bacon Hub Find Fruits" data-status="work">
-    <div class="status"></div>
-    <div class="content">
-      <div class="title">Bacon Hub Find Fruits</div>
-      <div class="desc">Click để copy script</div>
-      <textarea readonly>repeat wait() until game:IsLoaded() and game.Players.LocalPlayer 
+    <!-- SCRIPT 4 -->
+    <div class="card" data-name="Bacon Hub Find Fruits" data-status="work">
+      <div class="status"></div>
+      <div class="content">
+        <div class="title">Bacon Hub Find Fruits</div>
+        <div class="desc">Click để copy script</div>
+        <textarea readonly>repeat wait() until game:IsLoaded() and game.Players.LocalPlayer 
 getgenv().team = "Pirates" -- Pirates or Marines
 loadstring(game:HttpGet("https://raw.githubusercontent.com/vinh129150/hack/refs/heads/main/FinderFruits.lua"))()</textarea>
-      <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+        <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+      </div>
     </div>
-  </div>
-
-  <!-- SCRIPT 5 -->
-  <div class="card" data-name="Gravity Hub Main" data-status="work">
-    <div class="status"></div>
-    <div class="content">
-      <div class="title">Gravity Hub Main</div>
-      <div class="desc">Click để copy script</div>
-      <textarea readonly>loadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-GravityHub/BloxFruit/refs/heads/main/Main.lua"))()</textarea>
-      <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+    <!-- SCRIPT 5 -->
+    <div class="card" data-name="Gravity Hub Main" data-status="work">
+      <div class="status"></div>
+      <div class="content">
+        <div class="title">Gravity Hub Main</div>
+        <div class="desc">Click để copy script</div>
+        <textarea readonly>loadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-GravityHub/BloxFruit/refs/heads/main/Main.lua"))()</textarea>
+        <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+      </div>
     </div>
-  </div>
-
-  <!-- SCRIPT 6 -->
-  <div class="card" data-name="Gravity Hub Kaitun" data-status="work">
-    <div class="status"></div>
-    <div class="content">
-      <div class="title">Gravity Hub Kaitun</div>
-      <div class="desc">Click để copy script</div>
-      <textarea readonly>repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
+    <!-- SCRIPT 6 -->
+    <div class="card" data-name="Gravity Hub Kaitun" data-status="work">
+      <div class="status"></div>
+      <div class="content">
+        <div class="title">Gravity Hub Kaitun</div>
+        <div class="desc">Click để copy script</div>
+        <textarea readonly>repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-GravityHub/BloxFruit/refs/heads/main/Kaitun.lua"))()</textarea>
-      <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+        <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+      </div>
     </div>
-  </div>
-
-  <!-- SCRIPT 7 -->
-  <div class="card" data-name="Gravity Hub Find Fruits" data-status="work">
-    <div class="status"></div>
-    <div class="content">
-      <div class="title">Gravity Hub Find Fruits</div>
-      <div class="desc">Click để copy script</div>
-      <textarea readonly>getgenv().Team = "Marines"
+    <!-- SCRIPT 7 -->
+    <div class="card" data-name="Gravity Hub Find Fruits" data-status="work">
+      <div class="status"></div>
+      <div class="content">
+        <div class="title">Gravity Hub Find Fruits</div>
+        <div class="desc">Click để copy script</div>
+        <textarea readonly>getgenv().Team = "Marines"
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-GravityHub/BloxFruit/refs/heads/main/FindFruit.lua"))()</textarea>
-      <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+        <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+      </div>
     </div>
-  </div>
-
-  <!-- SCRIPT 8 -->
-  <div class="card" data-name="Gravity Hub Auto Bounty" data-status="work">
-    <div class="status"></div>
-    <div class="content">
-      <div class="title">Gravity Hub Auto Bounty</div>
-      <div class="desc">Click để copy script</div>
-      <textarea readonly>
+    <!-- SCRIPT 8 -->
+    <div class="card" data-name="Gravity Hub Auto Bounty" data-status="work">
+      <div class="status"></div>
+      <div class="content">
+        <div class="title">Gravity Hub Auto Bounty</div>
+        <div class="desc">Click để copy script</div>
+        <textarea readonly>
 repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
 getgenv().Setting = {
     ["Team"] = "Marines",
@@ -337,30 +513,28 @@ getgenv().Setting = {
         }
 }
 loadstring(game:HttpGet("https://pandadevelopment.net/virtual/file/09eeb45f4cc3ad5a"))()</textarea>
-      <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+        <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+      </div>
     </div>
-  </div>
-
-  <!-- SCRIPT 9 -->
-  <div class="card" data-name="BlueX Hub Main" data-status="work">
-    <div class="status"></div>
-    <div class="content">
-      <div class="title">BlueX Hub Main</div>
-      <div class="desc">Click để copy script</div>
-      <textarea readonly>_G.AutoTranslate = true
+    <!-- SCRIPT 9 -->
+    <div class="card" data-name="BlueX Hub Main" data-status="work">
+      <div class="status"></div>
+      <div class="content">
+        <div class="title">BlueX Hub Main</div>
+        <div class="desc">Click để copy script</div>
+        <textarea readonly>_G.AutoTranslate = true
 _G.SaveConfig = true
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-BlueX/BlueX-Hub/refs/heads/main/Main.lua"))()</textarea>
-      <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+        <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+      </div>
     </div>
-  </div>
-
-  <!-- SCRIPT 10 -->
-  <div class="card" data-name="BlueX Hub Find Fruits" data-status="work">
-    <div class="status"></div>
-    <div class="content">
-      <div class="title">BlueX Hub Find Fruits</div>
-      <div class="desc">Click để copy script</div>
-      <textarea readonly>getgenv().Config = {
+    <!-- SCRIPT 10 -->
+    <div class="card" data-name="BlueX Hub Find Fruits" data-status="work">
+      <div class="status"></div>
+      <div class="content">
+        <div class="title">BlueX Hub Find Fruits</div>
+        <div class="desc">Click để copy script</div>
+        <textarea readonly>getgenv().Config = {
     ["Setting"] = {
         ["Team"] = "Pirates", -- Pirates/Marines
         ["Black Screen"] = false,   
@@ -380,39 +554,36 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-BlueX/BlueX-Hub/r
     }
 }
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-BlueX/BlueX-Hub/refs/heads/main/FindFruits.lua"))()</textarea>
-      <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+        <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+      </div>
     </div>
-  </div>
-
-  <!-- SCRIPT 11 -->
-  <div class="card" data-name="NightX Hub Main" data-status="notwork">
-    <div class="status"></div>
-    <div class="content">
-      <div class="title">NightX Hub Main</div>
-      <div class="desc">Click để copy script</div>
-      <textarea readonly>loadstring(game:HttpGet("https://raw.githubusercontent.com/WhiteX1208/Scripts/refs/heads/main/BF-Beta.lua"))()</textarea>
-      <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+    <!-- SCRIPT 11 -->
+    <div class="card" data-name="NightX Hub Main" data-status="notwork">
+      <div class="status"></div>
+      <div class="content">
+        <div class="title">NightX Hub Main</div>
+        <div class="desc">Click để copy script</div>
+        <textarea readonly>loadstring(game:HttpGet("https://raw.githubusercontent.com/WhiteX1208/Scripts/refs/heads/main/BF-Beta.lua"))()</textarea>
+        <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+      </div>
     </div>
-  </div>
-
-  <!-- SCRIPT 12 -->
-  <div class="card" data-name="NightX Hub Hop Boss" data-status="notwork">
-    <div class="status"></div>
-    <div class="content">
-      <div class="title">NightX Hub Hop Boss</div>
-      <div class="desc">Click để copy script</div>
-      <textarea readonly>loadstring(game:HttpGet("https://raw.githubusercontent.com/WhiteX1208/Scripts/refs/heads/main/HopScript.luau"))()</textarea>
-      <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+    <!-- SCRIPT 12 -->
+    <div class="card" data-name="NightX Hub Hop Boss" data-status="notwork">
+      <div class="status"></div>
+      <div class="content">
+        <div class="title">NightX Hub Hop Boss</div>
+        <div class="desc">Click để copy script</div>
+        <textarea readonly>loadstring(game:HttpGet("https://raw.githubusercontent.com/WhiteX1208/Scripts/refs/heads/main/HopScript.luau"))()</textarea>
+        <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+      </div>
     </div>
-  </div>
-
-  <!-- SCRIPT 13 -->
-  <div class="card" data-name="NightX Hub Pull Lever" data-status="work">
-    <div class="status"></div>
-    <div class="content">
-      <div class="title">NightX Hub Pull Lever</div>
-      <div class="desc">Click để copy script</div>
-      <textarea readonly>getgenv().Config = {
+    <!-- SCRIPT 13 -->
+    <div class="card" data-name="NightX Hub Pull Lever" data-status="work">
+      <div class="status"></div>
+      <div class="content">
+        <div class="title">NightX Hub Pull Lever</div>
+        <div class="desc">Click để copy script</div>
+        <textarea readonly>getgenv().Config = {
     Team = "Pirates", -- uh not work now
     Settings = {
         ToolFarm = "Melee",
@@ -420,17 +591,16 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-BlueX/BlueX-Hub/r
     }
 }
 loadstring(game:HttpGet("https://raw.githubusercontent.com/WhiteX1208/Scripts/refs/heads/main/PullLever.luau"))()</textarea>
-      <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+        <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+      </div>
     </div>
-  </div>
-
-  <!-- SCRIPT 14 -->
-  <div class="card" data-name="NightX Hub Kaitun V4" data-status="work">
-    <div class="status"></div>
-    <div class="content">
-      <div class="title">NightX Hub Kaitun V4</div>
-      <div class="desc">Click để copy script</div>
-      <textarea readonly>repeat wait() until game:IsLoaded()
+    <!-- SCRIPT 14 -->
+    <div class="card" data-name="NightX Hub Kaitun V4" data-status="work">
+      <div class="status"></div>
+      <div class="content">
+        <div class="title">NightX Hub Kaitun V4</div>
+        <div class="desc">Click để copy script</div>
+        <textarea readonly>repeat wait() until game:IsLoaded()
 getgenv().Key = "" -- enter your premium key here
 getgenv().Config = {
   Accounts = {
@@ -439,29 +609,27 @@ getgenv().Config = {
   }
 }
 loadstring(game:HttpGet("https://raw.githubusercontent.com/WhiteX1208/Scripts/refs/heads/main/KaitunV4.lua"))()</textarea>
-      <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+        <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+      </div>
     </div>
-  </div>
-
-   <!-- SCRIPT 15 -->
-  <div class="card" data-name="Teddy Hub Main" data-status="work">
-    <div class="status"></div>
-    <div class="content">
-      <div class="title">Teddy Hub Main</div>
-      <div class="desc">Click để copy script</div>
-      <textarea readonly>repeat task.wait() until game:IsLoaded() and game:GetService("Players") and game.Players.LocalPlayer and game.Players.LocalPlayer:FindFirstChild("PlayerGui")
+    <!-- SCRIPT 15 -->
+    <div class="card" data-name="Teddy Hub Main" data-status="work">
+      <div class="status"></div>
+      <div class="content">
+        <div class="title">Teddy Hub Main</div>
+        <div class="desc">Click để copy script</div>
+        <textarea readonly>repeat task.wait() until game:IsLoaded() and game:GetService("Players") and game.Players.LocalPlayer and game.Players.LocalPlayer:FindFirstChild("PlayerGui")
 loadstring(game:HttpGet("https://api.luarmor.net/files/v4/loaders/e86ed284a22672d29e906214e7bbf8b9.lua"))()</textarea>
-      <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+        <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+      </div>
     </div>
-  </div>
-
-   <!-- SCRIPT 16 -->
-  <div class="card" data-name="Teddy Hub Kaitun V4" data-status="work">
-    <div class="status"></div>
-    <div class="content">
-      <div class="title">Teddy Hub Kaitun V4</div>
-      <div class="desc">Click để copy script</div>
-      <textarea readonly>getgenv().TeddyHub = {
+    <!-- SCRIPT 16 -->
+    <div class="card" data-name="Teddy Hub Kaitun V4" data-status="work">
+      <div class="status"></div>
+      <div class="content">
+        <div class="title">Teddy Hub Kaitun V4</div>
+        <div class="desc">Click để copy script</div>
+        <textarea readonly>getgenv().TeddyHub = {
     ["Allies"] = {
         "Name1","Name2", 
         "Name3"
@@ -473,41 +641,38 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v4/loaders/e86ed284a22672
     ["ResetAfterTrial"] = true
 }
 loadstring(game:HttpGet("https://github.com/Teddyseetink/Haidepzai/blob/main/TeddyHub-KaitunV4.lua"))()</textarea>
-      <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+        <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+      </div>
     </div>
-  </div>
-
-   <!-- SCRIPT 17 -->
-  <div class="card" data-name="Teddy Hub Hop Boss" data-status="work">
-    <div class="status"></div>
-    <div class="content">
-      <div class="title">Teddy Hub Hop Boss</div>
-      <div class="desc">Click để copy script</div>
-      <textarea readonly>repeat task.wait() until game:IsLoaded() and game:GetService("Players") and game.Players.LocalPlayer and game.Players.LocalPlayer:FindFirstChild("PlayerGui")
+    <!-- SCRIPT 17 -->
+    <div class="card" data-name="Teddy Hub Hop Boss" data-status="work">
+      <div class="status"></div>
+      <div class="content">
+        <div class="title">Teddy Hub Hop Boss</div>
+        <div class="desc">Click để copy script</div>
+        <textarea readonly>repeat task.wait() until game:IsLoaded() and game:GetService("Players") and game.Players.LocalPlayer and game.Players.LocalPlayer:FindFirstChild("PlayerGui")
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Teddyseetink/Haidepzai/refs/heads/main/TEDDYHUB-FREEMIUM"))()</textarea>
-      <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+        <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+      </div>
     </div>
-  </div>
-
-   <!-- SCRIPT 18 -->
-  <div class="card" data-name="Teddy Hub Kaitun TTK" data-status="work">
-    <div class="status"></div>
-    <div class="content">
-      <div class="title">Teddy Hub Kaitun TTK</div>
-      <div class="desc">Click để copy script</div>
-      <textarea readonly>repeat task.wait() until game:IsLoaded() and game:GetService("Players") and game.Players.LocalPlayer and game.Players.LocalPlayer:FindFirstChild("PlayerGui")
+    <!-- SCRIPT 18 -->
+    <div class="card" data-name="Teddy Hub Kaitun TTK" data-status="work">
+      <div class="status"></div>
+      <div class="content">
+        <div class="title">Teddy Hub Kaitun TTK</div>
+        <div class="desc">Click để copy script</div>
+        <textarea readonly>repeat task.wait() until game:IsLoaded() and game:GetService("Players") and game.Players.LocalPlayer and game.Players.LocalPlayer:FindFirstChild("PlayerGui")
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Teddyseetink/Haidepzai/refs/heads/main/TeddyHub-FullyTTK.lua"))()</textarea>
-      <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+        <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+      </div>
     </div>
-  </div>
-
-   <!-- SCRIPT 19 -->
-  <div class="card" data-name="Teddy Hub Auto Bounty" data-status="work">
-    <div class="status"></div>
-    <div class="content">
-      <div class="title">Teddy Hub Auto Bounty</div>
-      <div class="desc">Click để copy script</div>
-      <textarea readonly>repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
+    <!-- SCRIPT 19 -->
+    <div class="card" data-name="Teddy Hub Auto Bounty" data-status="work">
+      <div class="status"></div>
+      <div class="content">
+        <div class="title">Teddy Hub Auto Bounty</div>
+        <div class="desc">Click để copy script</div>
+        <textarea readonly>repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
 getgenv().Setting = {
     ["Team"] = "Marines",
     ["Skip Race V4"] = true,        
@@ -571,59 +736,55 @@ getgenv().Setting = {
         }
 }
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Teddyseetink/Haidepzai/refs/heads/main/TeddyHub-BountyEzz.lua"))()</textarea>
-      <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+        <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+      </div>
     </div>
-  </div>
-
-   <!-- SCRIPT 20 -->
-  <div class="card" data-name="Dragon Hub Main" data-status="work">
-    <div class="status"></div>
-    <div class="content">
-      <div class="title">Dragon Hub Main</div>
-      <div class="desc">Click để copy script</div>
-      <textarea readonly>repeat wait() until game:IsLoaded() and game.Players.LocalPlayer 
+    <!-- SCRIPT 20 -->
+    <div class="card" data-name="Dragon Hub Main" data-status="work">
+      <div class="status"></div>
+      <div class="content">
+        <div class="title">Dragon Hub Main</div>
+        <div class="desc">Click để copy script</div>
+        <textarea readonly>repeat wait() until game:IsLoaded() and game.Players.LocalPlayer 
 getgenv().team = "Pirates" -- Pirates or Marines
 loadstring(game:HttpGet("https://raw.githubusercontent.com/dragonhubdev/dragonwitheveryone/refs/heads/main/Main-BF.lua"))()</textarea>
-      <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+        <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+      </div>
     </div>
-  </div>
-
-   <!-- SCRIPT 21 -->
-  <div class="card" data-name="Dragon Hub Hop Boss" data-status="work">
-    <div class="status"></div>
-    <div class="content">
-      <div class="title">Dragon Hub Hop Boss</div>
-      <div class="desc">Click để copy script</div>
-      <textarea readonly>repeat wait() until game:IsLoaded() and game.Players.LocalPlayer 
+    <!-- SCRIPT 21 -->
+    <div class="card" data-name="Dragon Hub Hop Boss" data-status="work">
+      <div class="status"></div>
+      <div class="content">
+        <div class="title">Dragon Hub Hop Boss</div>
+        <div class="desc">Click để copy script</div>
+        <textarea readonly>repeat wait() until game:IsLoaded() and game.Players.LocalPlayer 
 getgenv().team = "Pirates" -- Pirates or Marines
 loadstring(game:HttpGet("https://raw.githubusercontent.com/luacoder-byte/DragonHub/refs/heads/main/DragonHubHopServer.lua"))()</textarea>
-      <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+        <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+      </div>
     </div>
-  </div>
-
-   <!-- SCRIPT 22 -->
-  <div class="card" data-name="Dragon Hub Kaitun Boss" data-status="work">
-    <div class="status"></div>
-    <div class="content">
-      <div class="title">Dragon Hub Kaitun Boss</div>
-      <div class="desc">Click để copy script</div>
-      <textarea readonly>getgenv().SettingFarm = {
+    <!-- SCRIPT 22 -->
+    <div class="card" data-name="Dragon Hub Kaitun Boss" data-status="work">
+      <div class="status"></div>
+      <div class="content">
+        <div class="title">Dragon Hub Kaitun Boss</div>
+        <div class="desc">Click để copy script</div>
+        <textarea readonly>getgenv().SettingFarm = {
     ["Team"] = "Pirates", -- Pirates or Marines
     ["Boss"] = "", -- Rip_indra , Darkbread, Doughking , Tyrant , Cursed_captian
     ["FPS"] = "false", -- false or true
 }
 loadstring(game:HttpGet("https://raw.githubusercontent.com/luacoder-byte/DragonHub/refs/heads/main/KaitunBoss.lua"))()</textarea>
-      <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+        <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+      </div>
     </div>
-  </div>
-
-  <!-- SCRIPT 23 -->
-  <div class="card" data-name="Dragon Hub Auto Bounty" data-status="work">
-    <div class="status"></div>
-    <div class="content">
-      <div class="title">Dragon Hub Auto Bounty</div>
-      <div class="desc">Click để copy script</div>
-      <textarea readonly>repeat task.wait() until game:IsLoaded() and game.Players.LocalPlayer
+    <!-- SCRIPT 23 -->
+    <div class="card" data-name="Dragon Hub Auto Bounty" data-status="work">
+      <div class="status"></div>
+      <div class="content">
+        <div class="title">Dragon Hub Auto Bounty</div>
+        <div class="desc">Click để copy script</div>
+        <textarea readonly>repeat task.wait() until game:IsLoaded() and game.Players.LocalPlayer
 getgenv().Setting = {
     ["Team"] = "Pirates",
     ["Auto Click"] = true,
@@ -710,361 +871,408 @@ getgenv().Setting = {
     }
 }
 loadstring(game:HttpGet("https://raw.githubusercontent.com/dragonhubdev/dragonwitheveryone/refs/heads/main/AutoBounty.lua"))()</textarea>
-      <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+        <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+      </div>
     </div>
-  </div>
-
-  <!-- SCRIPT 24 -->
-  <div class="card" data-name="Annie Hub Main" data-status="work">
-    <div class="status"></div>
-    <div class="content">
-      <div class="title">Annie Hub Main</div>
-      <div class="desc">Click để copy script</div>
-      <textarea readonly>loadstring(game:HttpGet("https://raw.githubusercontent.com/Anniecreate86/BloxFruits/refs/heads/main/BetaHub-BF"))()</textarea>
-      <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+    <!-- SCRIPT 24 -->
+    <div class="card" data-name="Annie Hub Main" data-status="work">
+      <div class="status"></div>
+      <div class="content">
+        <div class="title">Annie Hub Main</div>
+        <div class="desc">Click để copy script</div>
+        <textarea readonly>loadstring(game:HttpGet("https://raw.githubusercontent.com/Anniecreate86/BloxFruits/refs/heads/main/BetaHub-BF"))()</textarea>
+        <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+      </div>
     </div>
-  </div>
-
-  <!-- SCRIPT 25 -->
-  <div class="card" data-name="Xero Hub Main" data-status="work">
-    <div class="status"></div>
-    <div class="content">
-      <div class="title">Xero Hub Main</div>
-      <div class="desc">Click để copy script</div>
-      <textarea readonly>getgenv().Team = "Marines"
+    <!-- SCRIPT 25 -->
+    <div class="card" data-name="Xero Hub Main" data-status="work">
+      <div class="status"></div>
+      <div class="content">
+        <div class="title">Xero Hub Main</div>
+        <div class="desc">Click để copy script</div>
+        <textarea readonly>getgenv().Team = "Marines"
 getgenv().Hide_Menu = false
 getgenv().Auto_Execute = false
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Xero2409/XeroHub/refs/heads/main/main.lua"))()</textarea>
-      <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+        <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+      </div>
     </div>
-  </div>
-
-  <!-- SCRIPT 26 -->
-  <div class="card" data-name="Syntrax Hub Main" data-status="work">
-    <div class="status"></div>
-    <div class="content">
-      <div class="title">Syntrax Hub Main</div>
-      <div class="desc">Click để copy script</div>
-      <textarea readonly>loadstring(game:HttpGet("https://raw.githubusercontent.com/DevHub-roblox/script-SYNTRAX-Hub/refs/heads/main/Game/Bloxfruit/SYNTRAXHub/main.txt.lua"))()</textarea>
-      <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+    <!-- SCRIPT 26 -->
+    <div class="card" data-name="Syntrax Hub Main" data-status="work">
+      <div class="status"></div>
+      <div class="content">
+        <div class="title">Syntrax Hub Main</div>
+        <div class="desc">Click để copy script</div>
+        <textarea readonly>loadstring(game:HttpGet("https://raw.githubusercontent.com/DevHub-roblox/script-SYNTRAX-Hub/refs/heads/main/Game/Bloxfruit/SYNTRAXHub/main.txt.lua"))()</textarea>
+        <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+      </div>
     </div>
-  </div>
-
-  <!-- SCRIPT 27 -->
-  <div class="card" data-name="NazuX Hub Main" data-status="work">
-    <div class="status"></div>
-    <div class="content">
-      <div class="title">NazuX Hub Main</div>
-      <div class="desc">Click để copy script</div>
-      <textarea readonly>repeat wait() until game:IsLoaded() and game.Players.LocalPlayer loadstring(game:HttpGet("https://raw.githubusercontent.com/NguyenAnhKhoaVN/Real_AnhKhoa_2279/refs/heads/main/Main-BloxFruitsNX.lua"))()</textarea>
-      <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+    <!-- SCRIPT 27 -->
+    <div class="card" data-name="NazuX Hub Main" data-status="work">
+      <div class="status"></div>
+      <div class="content">
+        <div class="title">NazuX Hub Main</div>
+        <div class="desc">Click để copy script</div>
+        <textarea readonly>repeat wait() until game:IsLoaded() and game.Players.LocalPlayer loadstring(game:HttpGet("https://raw.githubusercontent.com/NguyenAnhKhoaVN/Real_AnhKhoa_2279/refs/heads/main/Main-BloxFruitsNX.lua"))()</textarea>
+        <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+      </div>
     </div>
-  </div>
-
-  <!-- SCRIPT 28 -->
-  <div class="card" data-name="Quantum Hub Main" data-status="work">
-    <div class="status"></div>
-    <div class="content">
-      <div class="title">Quantum Hub Main</div>
-      <div class="desc">Click để copy script</div>
-      <textarea readonly>loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Quantum-Onyx-Project-32118"))()</textarea>
-      <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+    <!-- SCRIPT 28 -->
+    <div class="card" data-name="Quantum Hub Main" data-status="work">
+      <div class="status"></div>
+      <div class="content">
+        <div class="title">Quantum Hub Main</div>
+        <div class="desc">Click để copy script</div>
+        <textarea readonly>loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Quantum-Onyx-Project-32118"))()</textarea>
+        <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+      </div>
     </div>
-  </div>
-
-  <!-- SCRIPT 29 -->
-  <div class="card" data-name="Xeter Hub V1 Main" data-status="work">
-    <div class="status"></div>
-    <div class="content">
-      <div class="title">Xeter Hub V1 Main</div>
-      <div class="desc">Click để copy script</div>
-      <textarea readonly>getgenv().Version = "V1"
+    <!-- SCRIPT 29 -->
+    <div class="card" data-name="Xeter Hub V1 Main" data-status="work">
+      <div class="status"></div>
+      <div class="content">
+        <div class="title">Xeter Hub V1 Main</div>
+        <div class="desc">Click để copy script</div>
+        <textarea readonly>getgenv().Version = "V1"
 getgenv().Team = "Marines"
 loadstring(game:HttpGet("https://raw.githubusercontent.com/TlDinhKhoi/Xeter/refs/heads/main/Main.lua"))()</textarea>
-      <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+        <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+      </div>
     </div>
-  </div>
-  
-  <!-- SCRIPT 30 -->
-  <div class="card" data-name="Xeter Hub V2 Main" data-status="work">
-    <div class="status"></div>
-    <div class="content">
-      <div class="title">Xeter Hub V2 Main</div>
-      <div class="desc">Click để copy script</div>
-      <textarea readonly>getgenv().Version = "V2"
+    <!-- SCRIPT 30 -->
+    <div class="card" data-name="Xeter Hub V2 Main" data-status="work">
+      <div class="status"></div>
+      <div class="content">
+        <div class="title">Xeter Hub V2 Main</div>
+        <div class="desc">Click để copy script</div>
+        <textarea readonly>getgenv().Version = "V2"
 getgenv().Team = "Marines"
 loadstring(game:HttpGet("https://raw.githubusercontent.com/TlDinhKhoi/Xeter/refs/heads/main/Main.lua"))()</textarea>
-      <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+        <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+      </div>
     </div>
-  </div>
-
-   <!-- SCRIPT 31 -->
-  <div class="card" data-name="Xeter Hub V3 Main" data-status="work">
-    <div class="status"></div>
-    <div class="content">
-      <div class="title">Xeter Hub V3 Main</div>
-      <div class="desc">Click để copy script</div>
-      <textarea readonly>getgenv().Version = "V3"
+    <!-- SCRIPT 31 -->
+    <div class="card" data-name="Xeter Hub V3 Main" data-status="work">
+      <div class="status"></div>
+      <div class="content">
+        <div class="title">Xeter Hub V3 Main</div>
+        <div class="desc">Click để copy script</div>
+        <textarea readonly>getgenv().Version = "V3"
 getgenv().Team = "Marines"
 loadstring(game:HttpGet("https://raw.githubusercontent.com/TlDinhKhoi/Xeter/refs/heads/main/Main.lua"))()</textarea>
-      <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+        <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+      </div>
     </div>
-  </div>
-
-   <!-- SCRIPT 32 -->
-  <div class="card" data-name="Xeter Hub V4 Main" data-status="work">
-    <div class="status"></div>
-    <div class="content">
-      <div class="title">Xeter Hub V4 Main</div>
-      <div class="desc">Click để copy script</div>
-      <textarea readonly>getgenv().Version = "V4"
+    <!-- SCRIPT 32 -->
+    <div class="card" data-name="Xeter Hub V4 Main" data-status="work">
+      <div class="status"></div>
+      <div class="content">
+        <div class="title">Xeter Hub V4 Main</div>
+        <div class="desc">Click để copy script</div>
+        <textarea readonly>getgenv().Version = "V4"
 getgenv().Team = "Marines"
 loadstring(game:HttpGet("https://raw.githubusercontent.com/TlDinhKhoi/Xeter/refs/heads/main/Main.lua"))()</textarea>
-      <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+        <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+      </div>
     </div>
-  </div>
-
-  <!-- SCRIPT 33 -->
-  <div class="card" data-name="Meow Hub Find Fruits" data-status="work">
-    <div class="status"></div>
-    <div class="content">
-      <div class="title">Meow Hub Find Fruits</div>
-      <div class="desc">Click để copy script</div>
-      <textarea readonly>loadstring(game:HttpGet("https://raw.githubusercontent.com/MEOW-HUB-DEV/SCRIPT-FREE/refs/heads/main/Autofruitbypass.lua"))()</textarea>
-      <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+    <!-- SCRIPT 33 -->
+    <div class="card" data-name="Meow Hub Find Fruits" data-status="work">
+      <div class="status"></div>
+      <div class="content">
+        <div class="title">Meow Hub Find Fruits</div>
+        <div class="desc">Click để copy script</div>
+        <textarea readonly>loadstring(game:HttpGet("https://raw.githubusercontent.com/MEOW-HUB-DEV/SCRIPT-FREE/refs/heads/main/Autofruitbypass.lua"))()</textarea>
+        <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+      </div>
     </div>
-  </div>
-
-  <!-- SCRIPT 34 -->
-  <div class="card" data-name="Night Mystic Hub Find Fruits" data-status="work">
-    <div class="status"></div>
-    <div class="content">
-      <div class="title">Night Mystic Hub Find Fruits</div>
-      <div class="desc">Click để copy script</div>
-      <textarea readonly>_G.MetodeTeleport = "Tween"   -- "Tween" or "Instant"
+    <!-- SCRIPT 34 -->
+    <div class="card" data-name="Night Mystic Hub Find Fruits" data-status="work">
+      <div class="status"></div>
+      <div class="content">
+        <div class="title">Night Mystic Hub Find Fruits</div>
+        <div class="desc">Click để copy script</div>
+        <textarea readonly>_G.MetodeTeleport = "Tween"   -- "Tween" or "Instant"
 _G.Team = "Marine"   -- "Marine" ou "Pirate"
 _G.WebhookURL = "SUA_WEBHOOK_AQUI" 
-
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-NightMystic/Collect-fruits-/refs/heads/main/Hop%20fruit"))()</textarea>
-      <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+        <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+      </div>
     </div>
-  </div>
-
-  <!-- SCRIPT 35 -->
-  <div class="card" data-name="BelBel Hub Find Fruits" data-status="work">
-    <div class="status"></div>
-    <div class="content">
-      <div class="title">BelBel Hub Find Fruits</div>
-      <div class="desc">Click để copy script</div>
-      <textarea readonly>getgenv().team = "Marines"
+    <!-- SCRIPT 35 -->
+    <div class="card" data-name="BelBel Hub Find Fruits" data-status="work">
+      <div class="status"></div>
+      <div class="content">
+        <div class="title">BelBel Hub Find Fruits</div>
+        <div class="desc">Click để copy script</div>
+        <textarea readonly>getgenv().team = "Marines"
 getgenv().AutoHop = true
 getgenv().AutoStoreFruit = true
 loadstring(game:HttpGet("https://pandadevelopment.net/virtual/file/452633447d7b467b"))()</textarea>
-      <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+        <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+      </div>
     </div>
-  </div>
-
-  <!-- SCRIPT 36 -->
-  <div class="card" data-name="Leaf Hub Main" data-status="work">
-    <div class="status"></div>
-    <div class="content">
-      <div class="title">Leaf Hub Main</div>
-      <div class="desc">Click để copy script</div>
-      <textarea readonly>repeat task.wait() until game:IsLoaded() and game.Players.LocalPlayer
+    <!-- SCRIPT 36 -->
+    <div class="card" data-name="Leaf Hub Main" data-status="work">
+      <div class="status"></div>
+      <div class="content">
+        <div class="title">Leaf Hub Main</div>
+        <div class="desc">Click để copy script</div>
+        <textarea readonly>repeat task.wait() until game:IsLoaded() and game.Players.LocalPlayer
 loadstring(game:HttpGet("https://github.com/LeafHubAcademy/LeafHub/raw/refs/heads/main/Leaf.lua"))()</textarea>
-      <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+        <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+      </div>
     </div>
-  </div>
-
-  <!-- SCRIPT 37 -->
-  <div class="card" data-name="Hermanos Hub Aimbot" data-status="work">
-    <div class="status"></div>
-    <div class="content">
-      <div class="title">Hermanos Hub Aimbot</div>
-      <div class="desc">Click để copy script</div>
-      <textarea readonly>getgenv().script_mode = "PVP" -- PVP, FARM
+    <!-- SCRIPT 37 -->
+    <div class="card" data-name="Hermanos Hub Aimbot" data-status="work">
+      <div class="status"></div>
+      <div class="content">
+        <div class="title">Hermanos Hub Aimbot</div>
+        <div class="desc">Click để copy script</div>
+        <textarea readonly>getgenv().script_mode = "PVP" -- PVP, FARM
 loadstring(game:HttpGet("https://raw.githubusercontent.com/hermanos-dev/hermanos-hub/refs/heads/main/Loader.lua"))()</textarea>
-      <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+        <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+      </div>
     </div>
-  </div>
-
-  <!-- SCRIPT 38 -->
-  <div class="card" data-name="Night Mystic Hub Main" data-status="work">
-    <div class="status"></div>
-    <div class="content">
-      <div class="title">Night Mystic Hub Main</div>
-      <div class="desc">Click để copy script</div>
-      <textarea readonly>loadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-NightMystic/Night-Mystic-/refs/heads/main/NightMystic"))()</textarea>
-      <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+    <!-- SCRIPT 38 -->
+    <div class="card" data-name="Night Mystic Hub Main" data-status="work">
+      <div class="status"></div>
+      <div class="content">
+        <div class="title">Night Mystic Hub Main</div>
+        <div class="desc">Click để copy script</div>
+        <textarea readonly>loadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-NightMystic/Night-Mystic-/refs/heads/main/NightMystic"))()</textarea>
+        <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+      </div>
     </div>
-  </div>
-
-<!-- SCRIPT 39 -->
-  <div class="card" data-name="3Toc Hub Kaitun Boss" data-status="work">
-    <div class="status"></div>
-    <div class="content">
-      <div class="title">3Toc Hub Kaitun Boss</div>
-      <div class="desc">Click để copy script</div>
-      <textarea readonly>getgenv().Config = {
+    <!-- SCRIPT 39 -->
+    <div class="card" data-name="3Toc Hub Kaitun Boss" data-status="work">
+      <div class="status"></div>
+      <div class="content">
+        <div class="title">3Toc Hub Kaitun Boss</div>
+        <div class="desc">Click để copy script</div>
+        <textarea readonly>getgenv().Config = {
        Bosses = {
             Farm = "rip_indra" -- "Dough King", "Darkbeard", "Tyrant of the Skies", "Cake Prince"
        }
 }
 loadstring(game:HttpGet("https://raw.githubusercontent.com/LuaAnarchist/3TOC-HUB/refs/heads/main/KaitunBoss.luau"))()</textarea>
-      <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+        <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+      </div>
     </div>
-  </div>
 
-  <!-- SCRIPT 40 -->
-  <div class="card" data-name="3Toc Hub Auto Bounty" data-status="work">
-    <div class="status"></div>
-    <div class="content">
-      <div class="title">3Toc Hub Auto Bounty</div>
-      <div class="desc">Click để copy script</div>
-      <textarea readonly>repeat task.wait() until game:IsLoaded() and game.Players.LocalPlayer
+    <!-- SCRIPT 40 -->
+    <div class="card" data-name="3Toc Hub Auto Bounty" data-status="work">
+      <div class="status"></div>
+      <div class="content">
+        <div class="title">3Toc Hub Auto Bounty</div>
+        <div class="desc">Click để copy script</div>
+        <textarea readonly>repeat task.wait() until game:IsLoaded() and game.Players.LocalPlayer
 getgenv().Team = "Pirates" --// Marines
 getgenv().Mode = "Auto Bounty"
 getgenv().On_Ui = true
-getgenv().Config = {
-    ["Safe Health"] = {50, 70}, -- {health run, health kill}
-    ["Custom Y Run"] = {
-        Enabled = true,
-        ["Y Run"] = 5000
-    },
-    ["Hunt Method"] = {
-        ["Use Move Predict"] = false,
-        ["Hit and Run"] = false,
-        ["Aimbot"] = true,
-        ["Hitbox"] = false,
-        ["Hitbox-Size"] = Vector3.new(80, 80, 80),
-        ["ESP Player"] = true,
-        ["Skip Player"] = {"concac"},
-        ["Skip Player High Bounty"] = nil,
-        ["Max Attack Time"] = 60,
-        ["Lock Bounty"] = {
-            ["Enabled"] = false,
-            ["Bounty"] = {0, 30000000}
-        }
-    },
-    ["Stats"] = {
-        ["Enable"] = false,
-        ["Reset Stats"] = false,
-        ["Point"] = {
-            ["Points per lift"] = nil,
-            ["Melee"] = nil,
-            ["Defence"] = nil,
-            ["Sword"] = nil,
-            ["Gun"] = nil,
-            ["Devil Fruit"] = nil
-        }
-    },
-    ["Shop"] = {
-        ["Random Fruit"] = false,
-        ["Store Fruit"] = true,
-        ["Zoro Sword"] = false
-    },
-    ["Theme"] = {
-        Name = "Premium",
-        UIUrl = "", -- rbxassetid://yourid hoặc link ảnh (github, imgur)
-        Custom = {
-            ["Enable"] = false,
-            ["title_color"] = Color3.fromRGB(255, 221, 252),
-            ["titleback_color"] = Color3.fromRGB(169, 20, 255),
-            ["list_color"] = Color3.fromRGB(255, 221, 252),
-            ["liststroke_color"] = Color3.fromRGB(151, 123, 207),
-            ["button_color"] = Color3.fromRGB(255, 221, 252),
-            ["title_font"] = Enum.Font.FredokaOne,
-            ["text_font"] = Enum.Font.Gotham,
-            ["title_size"] = 40,
-            ["text_size"] = 24
-        }
-    },
-    ["Setting"] = {
-        ["World"] = 3,
-        ["White Screen"] = false,
-        ["Fast Delay"] = 0.45,
-        ["Fruit Attack"] = false, -- true
-        ["FPS BOOSTER"] = false,
-        ["Bypass Method"] = nil, --// Request 
-        ["Url"] = "", -- có thể chỉnh thành {url, true} nếu muốn gửi webhook
-        ["Lock Weapons"] = {
-          ["Melee"] = nil, --// Hên xui vì game đã patched buy melee từ xa
-          ["Sword"] = nil,
-          ["Gun"] = nil
-        },
-        ["Server Hop"] = {
-          ["Minimum player"] = {10, 9, 8, 7, 6} --// Số player tối thiểu để hop sang sv đó
-        }
-    },
-    ["Skip"] = {
-        ["Avoid V4"] = false,
-        ["Fruit"] = {
-            ["Enabled"] = true,
-            ["Avoid Fruit"] = {
-                "Portal-Portal",
-                "Kitsune-Kitsune"
-            }
-        }
-    },
-    ["Spam All Skill On V4"] = {
-        Enabled = true,
-        ["Weapons"] = {"Melee", "Sword", "Gun", "Blox Fruit"}
-    },
-    ["Items"] = {
-        ["Melee"] = {
-            Enable = true,
-            Delay = 0.4,
-            Skills = {
-                Z = {Enable = true, HoldTime = 0.3},
-                X = {Enable = true, HoldTime = 0.2},
-                C = {Enable = true, HoldTime = 0.5}
-            }
-        },
-        ["Sword"] = {
-            Enable = true,
-            Delay = 0.5,
-            Skills = {
-                Z = {Enable = true, HoldTime = 1},
-                X = {Enable = true, HoldTime = 0}
-            }
-        },
-        ["Gun"] = {
-            Enable = true,
-            Delay = 0.3,
-            Skills = {
-                Z = {Enable = true, HoldTime = 0.1},
-                X = {Enable = true, HoldTime = 0.1}
-            }
-        },
-        ["Blox Fruit"] = {
-            Enable = true,
-            Delay = 0.4,
-            Skills = {
-                Z = {Enable = true, HoldTime = 0.1},
-                X = {Enable = true, HoldTime = 0.1},
-                C = {Enable = true, HoldTime = 0.15},
-                V = {Enable = true, HoldTime = 0.2},
-                F = {Enable = true, HoldTime = 0.1}
-            }
-        }
+... (config dài)...
+loadstring(game:HttpGet("https://api.luarmor.net/files/v4/loaders/447e148472147aeab25274ddba143d23.lua"))()</textarea>
+        <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+      </div>
+    </div>
+
+ <!-- SCRIPT 41 -->
+    <div class="card" data-name="Dragon Hub Kaitun Cyborg" data-status="work">
+      <div class="status"></div>
+      <div class="content">
+        <div class="title">Dragon Hub Kaitun Cyborg</div>
+        <div class="desc">Click để copy script</div>
+        <textarea readonly>getgenv().DragonHub_Config = {
+    ["Enable"] = true,
+    ["Upgrade Race V2-V3"] = false,
+    ["HopServerIfChest"] = 17,
+    ["HopIfCollectEnoughChest"] = true,
+    ["CollectEnough"] = 40,
+    ["TweenSpeed"] = 340,
+    ["Team"] = "Marines",
+    ["Webhook"] = {
+        ["Url"] = "",
+        ["Enable"] = true,
+        ["PingEveryoneWhenDone"] = true
     }
 }
-loadstring(game:HttpGet("https://api.luarmor.net/files/v4/loaders/447e148472147aeab25274ddba143d23.lua"))()</textarea>
-      <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+loadstring(game:HttpGet("https://raw.githubusercontent.com/dragonhubdev/dragonwitheveryone/refs/heads/main/AutoCyborg.lua"))()</textarea>
+        <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+      </div>
     </div>
-  </div>
 
-  <!-- SCRIPT 41 -->
-  <div class="card" data-name="Coming Soon" data-status="soon">
-    <div class="status"></div>
-    <div class="content">
-      <div class="title">Coming Soon</div>
-      <div class="desc">soon</div>
-      <textarea readonly></textarea>
-      <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+    <!-- SCRIPT 42 -->
+    <div class="card" data-name="BlueX Hub Auto Bounty" data-status="work">
+      <div class="status"></div>
+      <div class="content">
+        <div class="title">BlueX Hub Auto Bounty</div>
+        <div class="desc">Click để copy script</div>
+        <textarea readonly>getgenv().Config = {
+    ["Setting"] = {
+        ["Team"] = "Pirates", -- Pirates/Marines
+        ["FPS Boost"] = false,
+        ["RemoveNotification"] = false
+    },
+    ["Run"] = {
+        ["RunIfLowHealth"] = true,
+        ["HealtRun"] = 30, -- %
+        ["HealthBack"] = 50 -- %
+    },
+    ["Skip"] = {
+        ["Skip V4"] = false,
+        ["Skip Fruits"] = {"Portal-Portal", "Buddha-Buddha"}
+    },     
+    ["Weapon"] = {
+        ["Melee"] = {
+            ["Use Melee"] = true,
+            ["Z"] = {Enable = true, Hold = 0.1},
+            ["X"] = {Enable = true, Hold = 0.1},
+            ["C"] = {Enable = true, Hold = 0.1}
+        },
+        ["Fruits"] = {
+            ["Use Fruits"] = true,
+            ["Z"] = {Enable = true, Hold = 0.1},
+            ["X"] = {Enable = true, Hold = 0.1},
+            ["C"] = {Enable = true, Hold = 0.1},
+            ["V"] = {Enable = false, Hold = 0.1},
+            ["F"] = {Enable = false, Hold = 0.1}
+        },
+        ["Sword"] = {
+            ["Use Sword"] = true,
+            ["Z"] = {Enable = true, Hold = 0.1},
+            ["X"] = {Enable = false, Hold = 0.1}
+        },
+        ["Gun"] = {
+            ["Use Gun"] = false,
+            ["Z"] = {Enable = false, Hold = 0.1},
+            ["X"] = {Enable = false, Hold = 0.1}
+        },
+    },
+    ["Misc"] = {
+        ["Aimbot Camera"] = true,
+        ["Active Race V3"] = true,
+        ["Active Race V4"] = true,
+        ["Random And Store Fruits"] = false
+    },
+    ["Webhook"] = {      
+        ["UrlWebhook"] = "",
+        ["Enable"] = false
+    }
+}
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-BlueX/...../refs/heads/main/FarmBounty.lua"))()</textarea>
+        <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+      </div>
     </div>
-  </div>
 
+    <!-- SCRIPT 43 -->
+    <div class="card" data-name="Leaf Hub Find Fruits" data-status="work">
+      <div class="status"></div>
+      <div class="content">
+        <div class="title">Leaf Hub Find Fruits</div>
+        <div class="desc">Click để copy script</div>
+        <textarea readonly>getgenv().Team = "Marines" -- Pirates
+getgenv().Factory = true -- false
+getgenv().CastleRaid = true -- false
+getgenv().RandomFruit = true -- false
+loadstring(game:HttpGet("https://github.com/LeafHubAcademy/LeafHub/raw/refs/heads/main/LeafFruit.lua"))()</textarea>
+        <button class="copy-btn" onclick="copyScript(this)">COPY SCRIPT</button>
+      </div>
+    </div>
+
+  </div> <!-- end grid -->
+</div> <!-- end page-home -->
+
+<!-- ===== TRANG PARTNER ===== -->
+<div id="page-partner" class="page">
+  <div class="header">
+    <h1>ĐỐI TÁC CỦA GRAI</h1>
+    <p>Kết nối · Hợp tác · Phát triển cùng chúng tôi</p>
+  </div>
+  <div class="partner-grid">
+    <!-- Partner 1 - HIRU HUB -->
+    <div class="partner-card">
+      <div class="partner-avatar">
+        <img src="https://s6.imgcdn.dev/Y7pSOq.jpg" alt="Hiru Hub Logo" style="width:100%; height:100%; object-fit:cover; border-radius:50%; border: none;">
+      </div>
+      <div class="partner-info">
+        <h3>HIRU HUB</h3>
+        <span class="partner-tag">Respect</span>
+        <div class="partner-desc">Respect Hub</div>
+        <div class="partner-contact">
+          <span>https://discord.gg/Q2NCHcFY7f</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Partner 2 - KEMU HUB -->
+    <div class="partner-card">
+      <div class="partner-avatar">
+        <img src="https://s6.imgcdn.dev/Y7prEB.webp" alt="Kemu Hub Logo" style="width:100%; height:100%; object-fit:cover; border-radius:50%; border: none;">
+      </div>
+      <div class="partner-info">
+        <h3>KEMU HUB</h3>
+        <span class="partner-tag">HUB FREE</span>
+        <div class="partner-desc">Script Fremium, Premium Cực Ngon</div>
+        <div class="partner-contact">
+          <span>https://discord.gg/64U9BjFeDK</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Partner 3 - SYNET HUB -->
+    <div class="partner-card">
+      <div class="partner-avatar">
+        <img src="https://s6.imgcdn.dev/Y7p2SL.webp" alt="Synet Hub Logo" style="width:100%; height:100%; object-fit:cover; border-radius:50%; border: none;">
+      </div>
+      <div class="partner-info">
+        <h3>SYNET HUB</h3>
+        <span class="partner-tag">HUB FREE</span>
+        <div class="partner-desc">Team dev chuyên cập nhật script hop boss. Luôn đồng hành cùng Grai.</div>
+        <div class="partner-contact">
+          <span>https://discord.gg/RVakAEyMsn</span>
+        </div>
+      </div>
+    </div>
+    
+  </div> <!-- Đóng partner-grid -->
+</div> <!-- Đóng page-partner -->
+<!-- ===== TRANG ABOUT ===== -->
+<div id="page-about" class="page">
+  <div class="header">
+    <h1>ABOUT GRAI WEB</h1>
+    <p>Nền tảng tổng hợp script nhanh, gọn, uy tín</p>
+  </div>
+  <div class="about-wrap">
+    <h2>Grai Web là gì?</h2>
+    <p>Được sinh ra từ sự đam mê Blox Fruit và nhu cầu tìm kiếm script nhanh chóng, <strong style="color:#22c55e">Grai Web</strong> tập hợp hơn 40 script từ các hub lớn: Bacon, Gravity, BlueX, Teddy, Dragon, Xero, 3Toc... Tất cả đều được kiểm tra trạng thái Working/NotWorking rõ ràng. Mỗi script chỉ cách bạn một nút COPY.</p>
+    
+    <h4>Đội ngũ phát triển</h4>
+    <p>Cùng Với Đội Ngũ Phát Triển. Grai Web hoạt động với tinh thần mã nguồn mở, cập nhật liên tục và không thu phí.</p>
+    
+    <div class="about-stats">
+      <div class="stat-item">
+        <div class="stat-num">50+</div>
+        <div class="stat-label">Scripts</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">36+</div>
+        <div class="stat-label">Working</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">3</div>
+        <div class="stat-label">Đối tác</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">24/7</div>
+        <div class="stat-label">Cập nhật</div>
+      </div>
+    </div>
+
+    <h4>Liên hệ & góp ý</h4>
+    <p>• Discord: https://discord.gg/qVa6jedW9p</p>
+    
+    <hr>
+    <p style="text-align:center; opacity:0.7;">© We Team</p>
+  </div>
 </div>
 
 <div class="footer">
@@ -1072,6 +1280,7 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v4/loaders/447e148472147a
 </div>
 
 <script>
+// COPY SCRIPT
 function copyScript(btn){
   const textarea = btn.parentElement.querySelector("textarea");
   textarea.select();
@@ -1080,32 +1289,66 @@ function copyScript(btn){
   setTimeout(()=>btn.innerText="COPY SCRIPT",1500);
 }
 
-/* SEARCH */
-document.getElementById("search").addEventListener("input", function(){
-  const val = this.value.toLowerCase();
-  document.querySelectorAll(".card").forEach(card=>{
-    const name = card.getAttribute("data-name").toLowerCase();
-    card.style.display = name.includes(val) ? "block" : "none";
-  });
+// SEARCH (chỉ hoạt động ở trang chủ)
+document.addEventListener("input", function(e){
+  if(e.target.id === "search"){
+    const val = e.target.value.toLowerCase();
+    document.querySelectorAll("#page-home .card").forEach(card=>{
+      const name = card.getAttribute("data-name").toLowerCase();
+      card.style.display = name.includes(val) ? "block" : "none";
+    });
+  }
 });
 
-/* STATUS */
+// GẮN STATUS BADGE
 document.querySelectorAll(".card").forEach(card=>{
   const st = card.getAttribute("data-status");
   const badge = card.querySelector(".status");
   if(st === "work"){
-  badge.classList.add("work");
-  badge.innerText = "● WORKING";
-}
-else if(st === "notwork"){
-  badge.classList.add("notwork");
-  badge.innerText = "● NOT WORKING";
-}
-else if(st === "soon"){
-  badge.classList.add("soon");
-  badge.innerText = "● COMING SOON";
-}
+    badge.classList.add("work");
+    badge.innerText = "● WORKING";
+  } else if(st === "notwork"){
+    badge.classList.add("notwork");
+    badge.innerText = "● NOT WORKING";
+  } else if(st === "soon"){
+    badge.classList.add("soon");
+    badge.innerText = "● COMING SOON";
+  }
 });
+
+// ===== CHUYỂN TRANG (MULTI PAGE) =====
+const navLinks = document.querySelectorAll('.nav-link');
+const pages = {
+  home: document.getElementById('page-home'),
+  partner: document.getElementById('page-partner'),
+  about: document.getElementById('page-about')
+};
+
+function setActivePage(pageId) {
+  // ẩn hết
+  Object.values(pages).forEach(p => p.classList.remove('active-page'));
+  // hiện trang đc chọn
+  if(pages[pageId]) pages[pageId].classList.add('active-page');
+  
+  // active nav
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+    if(link.dataset.page === pageId) link.classList.add('active');
+  });
+}
+
+navLinks.forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    const pageId = link.dataset.page; // "home", "partner", "about"
+    setActivePage(pageId);
+    // cuộn lên đầu
+    window.scrollTo({top:0, behavior:'smooth'});
+  });
+});
+
+// mặc định trang home active
+setActivePage('home');
 </script>
 
 </body>
