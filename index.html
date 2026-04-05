@@ -1,456 +1,145 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>Madium Executor | Next-Gen Script Execution</title>
-  <!-- Google Fonts + Font Awesome Icons (for auxiliary icons) -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Madium Executor</title>
 
-    body {
-      min-height: 100vh;
-      font-family: 'Inter', sans-serif;
-      background: radial-gradient(circle at 20% 30%, #0a0f1f, #03060c);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow-x: hidden;
-      padding: 1.5rem;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-    /* animated luminous orbs / floating particles background */
-    body::before {
-      content: "";
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      background: 
-        radial-gradient(circle at 10% 20%, rgba(0, 255, 255, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 90% 70%, rgba(255, 0, 255, 0.12) 0%, transparent 55%),
-        radial-gradient(circle at 40% 80%, rgba(0, 255, 150, 0.1) 0%, transparent 60%);
-      animation: driftOrbs 18s infinite alternate ease-in-out;
-      pointer-events: none;
-      z-index: 0;
-    }
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
 
-    @keyframes driftOrbs {
-      0% {
-        opacity: 0.6;
-        transform: scale(1) translate(0px, 0px);
-      }
-      100% {
-        opacity: 1;
-        transform: scale(1.1) translate(2%, 3%);
-      }
-    }
+body{
+  font-family:Inter,sans-serif;
+  background:radial-gradient(circle at 20% 30%, #0a0f1f, #03060c);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:100vh;
+  color:white;
+}
 
-    /* dynamic grid pattern overlay */
-    body::after {
-      content: "";
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background-image: 
-        linear-gradient(rgba(0, 255, 255, 0.08) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 255, 255, 0.08) 1px, transparent 1px);
-      background-size: 48px 48px;
-      pointer-events: none;
-      z-index: 0;
-    }
+.executor-card{
+  width:100%;
+  max-width:600px;
+  background:rgba(12,20,30,0.6);
+  border-radius:30px;
+  padding:25px;
+  border:1px solid rgba(0,255,255,0.3);
+  backdrop-filter:blur(10px);
+  box-shadow:0 20px 40px rgba(0,0,0,0.5);
+}
 
-    /* main container - glass card */
-    .executor-card {
-      position: relative;
-      z-index: 10;
-      max-width: 620px;
-      width: 100%;
-      background: rgba(12, 20, 30, 0.55);
-      backdrop-filter: blur(14px);
-      border-radius: 3rem;
-      border: 1px solid rgba(0, 255, 255, 0.35);
-      box-shadow: 0 25px 45px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(0, 255, 255, 0.1) inset;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      animation: floatCard 5s infinite alternate ease-in-out;
-    }
+/* TITLE + LOGO */
+.title-box{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  margin-bottom:10px;
+}
 
-    .executor-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 32px 55px rgba(0, 0, 0, 0.5), 0 0 0 2px rgba(0, 255, 200, 0.2) inset;
-      border-color: rgba(0, 255, 200, 0.6);
-    }
+.title-box img{
+  width:45px;
+  height:45px;
+  border-radius:50%;
+  box-shadow:0 0 10px cyan;
+}
 
-    @keyframes floatCard {
-      0% {
-        transform: translateY(0px);
-      }
-      100% {
-        transform: translateY(-6px);
-      }
-    }
+.title-text{
+  font-size:28px;
+  font-weight:800;
+  background:linear-gradient(to right,#fff,#00ffff,#00ffcc);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
 
-    .card-inner {
-      padding: 2rem 2rem 2.2rem;
-    }
+/* info */
+.info{
+  display:flex;
+  justify-content:space-between;
+  margin-top:10px;
+  font-size:14px;
+}
 
-    /* Madium Logo Image */
-    .logo-image-container {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 1.2rem;
-    }
-    .madium-logo {
-      max-width: 130px;
-      width: 100%;
-      height: auto;
-      filter: drop-shadow(0 0 8px rgba(0, 255, 255, 0.5));
-      transition: transform 0.3s ease, filter 0.3s;
-      border-radius: 20px;
-    }
-    .madium-logo:hover {
-      transform: scale(1.02);
-      filter: drop-shadow(0 0 14px cyan);
-    }
+/* button */
+.btn{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:10px;
+  background:linear-gradient(90deg,#00c9ff,#00ffcc);
+  padding:12px;
+  border-radius:50px;
+  margin-top:15px;
+  text-decoration:none;
+  color:black;
+  font-weight:700;
+  transition:0.3s;
+}
+.btn:hover{
+  transform:scale(1.05);
+}
 
-    /* title image (SVG) container */
-    .title-image-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: 0.5rem 0 0.2rem;
-    }
-    .title-svg {
-      max-width: 100%;
-      height: auto;
-      filter: drop-shadow(0 4px 12px rgba(0, 200, 255, 0.4));
-      transition: transform 0.2s ease;
-    }
-    .title-svg:hover {
-      transform: scale(1.01);
-    }
+/* update */
+.update{
+  margin-top:20px;
+  background:rgba(0,0,0,0.4);
+  padding:15px;
+  border-radius:20px;
+}
 
-    /* version & tagline row */
-    .info-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 0.8rem;
-    }
-    .version-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(0, 255, 255, 0.12);
-      backdrop-filter: blur(4px);
-      padding: 0.4rem 1rem;
-      border-radius: 40px;
-      font-size: 0.85rem;
-      font-weight: 500;
-      border: 1px solid rgba(0, 255, 200, 0.3);
-      width: fit-content;
-    }
-    .version-chip i {
-      font-size: 0.9rem;
-      color: #0ff;
-    }
-    .version-chip span {
-      color: #b8f2ff;
-      font-weight: 600;
-    }
-    .tagline {
-      font-size: 0.9rem;
-      color: #b4d4ff;
-      background: rgba(0, 20, 40, 0.5);
-      border-radius: 60px;
-      padding: 0.4rem 1rem;
-      backdrop-filter: blur(4px);
-      font-weight: 500;
-      letter-spacing: 0.3px;
-    }
-
-    .description {
-      color: #e2f0ff;
-      font-weight: 400;
-      font-size: 0.95rem;
-      line-height: 1.45;
-      margin: 1rem 0 1.5rem;
-      opacity: 0.9;
-    }
-
-    /* modern download button */
-    .download-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      background: linear-gradient(105deg, #00c9ff, #00f2fe, #2bffb5);
-      background-size: 200% auto;
-      border: none;
-      padding: 0.9rem 2rem;
-      font-size: 1.2rem;
-      font-weight: 700;
-      font-family: inherit;
-      border-radius: 60px;
-      color: #0a0f1f;
-      cursor: pointer;
-      transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-      text-decoration: none;
-      width: 100%;
-      justify-content: center;
-      letter-spacing: 0.5px;
-      box-shadow: 0 8px 20px rgba(0, 200, 255, 0.3);
-      margin: 0.5rem 0 0.8rem;
-    }
-    .download-btn i {
-      font-size: 1.3rem;
-      transition: transform 0.2s;
-    }
-    .download-btn:hover {
-      background-position: 100% 0;
-      transform: scale(1.02);
-      box-shadow: 0 12px 28px rgba(0, 210, 255, 0.5);
-      color: #000;
-    }
-    .download-btn:hover i {
-      transform: translateY(2px);
-    }
-
-    /* update section - refined glass panel */
-    .update-panel {
-      margin-top: 2rem;
-      background: rgba(0, 15, 25, 0.6);
-      backdrop-filter: blur(10px);
-      border-radius: 1.8rem;
-      padding: 1.2rem 1.5rem;
-      border: 1px solid rgba(255, 0, 255, 0.4);
-      transition: all 0.25s;
-      box-shadow: 0 5px 18px rgba(0,0,0,0.2);
-    }
-    .update-panel:hover {
-      border-color: rgba(0, 255, 200, 0.6);
-      background: rgba(0, 20, 35, 0.7);
-    }
-    .update-header {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 700;
-      font-size: 1.15rem;
-      margin-bottom: 1rem;
-      color: #ffb3ff;
-      border-left: 3px solid #ff44dd;
-      padding-left: 12px;
-    }
-    .update-header i {
-      font-size: 1.3rem;
-      color: #ff66ff;
-    }
-    .update-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .update-list li {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 0.95rem;
-      font-weight: 500;
-      color: #d9ecff;
-      background: rgba(255,255,255,0.02);
-      padding: 6px 12px;
-      border-radius: 60px;
-      transition: 0.2s;
-    }
-    .update-list li i {
-      width: 24px;
-      font-size: 1.1rem;
-      color: #2effb0;
-    }
-    .update-list li:hover {
-      background: rgba(0, 255, 255, 0.08);
-      transform: translateX(6px);
-    }
-
-    .extra-meta {
-      margin-top: 1.8rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.7rem;
-      color: #6c8eaa;
-      border-top: 1px solid rgba(0, 255, 255, 0.2);
-      padding-top: 1rem;
-    }
-    .status-badge {
-      background: rgba(0, 200, 0, 0.15);
-      padding: 4px 12px;
-      border-radius: 40px;
-      font-size: 0.7rem;
-      font-weight: 600;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      color: #aaffdd;
-    }
-    .status-badge i {
-      font-size: 0.6rem;
-      color: #0f9;
-    }
-
-    /* responsive */
-    @media (max-width: 550px) {
-      .card-inner {
-        padding: 1.5rem;
-      }
-      .download-btn {
-        font-size: 1rem;
-        padding: 0.75rem 1.5rem;
-      }
-      .update-panel {
-        padding: 1rem;
-      }
-      .update-list li {
-        font-size: 0.85rem;
-      }
-      .madium-logo {
-        max-width: 95px;
-      }
-      .title-svg {
-        width: 260px;
-      }
-    }
-
-    /* shine animation on button */
-    @keyframes btnGlow {
-      0% { background-position: 0% 50%; }
-      100% { background-position: 100% 50%; }
-    }
-    .download-btn {
-      background-size: 200% auto;
-      animation: btnGlow 3s infinite alternate;
-    }
-
-    /* small glow pulse on border */
-    @keyframes borderGlow {
-      0% { border-color: rgba(0, 255, 200, 0.3); box-shadow: 0 0 6px rgba(0, 255, 200, 0.2); }
-      100% { border-color: rgba(255, 0, 255, 0.5); box-shadow: 0 0 14px rgba(0, 255, 255, 0.4); }
-    }
-    .executor-card {
-      animation: floatCard 5s infinite alternate, borderGlow 4s infinite alternate;
-    }
-  </style>
+/* footer */
+.footer{
+  margin-top:15px;
+  font-size:12px;
+  display:flex;
+  justify-content:space-between;
+  opacity:0.7;
+}
+</style>
 </head>
+
 <body>
 
 <div class="executor-card">
-  <div class="card-inner">
-    
-    <!-- Logo image (provided by user) -->
-    <div class="logo-image-container">
-      <img src="https://s6.imgcdn.dev/YA7ZPM.png" 
-           alt="Madium Executor Logo" 
-           border="0"
-           class="madium-logo">
-    </div>
 
-    <!-- TITLE AS IMAGE (SVG graphic) -->
-    <div class="title-image-container">
-      <svg class="title-svg" width="340" height="60" viewBox="0 0 340 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Madium Executor">
-        <defs>
-          <linearGradient id="titleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stop-color="#FFFFFF"/>
-            <stop offset="35%" stop-color="#88ffff"/>
-            <stop offset="70%" stop-color="#00ccff"/>
-            <stop offset="100%" stop-color="#2bffb5"/>
-          </linearGradient>
-          <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-            <feGaussianBlur in="SourceAlpha" stdDeviation="2.5"/>
-            <feMerge>
-              <feMergeNode in="offsetblur" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
-        </defs>
-        <text x="50%" y="45" dominant-baseline="middle" text-anchor="middle" 
-              font-family="'Inter', 'Segoe UI', system-ui, sans-serif" 
-              font-weight="800" font-size="40" letter-spacing="1"
-              fill="url(#titleGrad)" filter="url(#glow)" stroke="none">
-          Madium Executor
-        </text>
-      </svg>
-    </div>
-
-    <!-- Version & tagline row -->
-    <div class="info-row">
-      <div class="version-chip">
-        <i class="fas fa-code-branch"></i>
-        <span>Version 1.1.7</span>
-      </div>
-      <div class="tagline">
-        <i class="fas fa-shield-alt"></i>  Stable · Good
-      </div>
-    </div>
-
-    <div class="description">
-      <i class="fas fa-gem" style="color: #0ff; margin-right: 8px;"></i>
-      Free Executor For Roblox
-    </div>
-
-    <!-- DOWNLOAD BUTTON (main CTA) -->
-    <a class="download-btn" href="https://work.ink/2nLR/madium-install" target="_blank" rel="noopener noreferrer">
-      <i class="fas fa-download"></i> DOWNLOAD NOW
-      <i class="fas fa-arrow-right"></i>
-    </a>
-
-    <!-- Update section (changelog) -->
-    <div class="update-panel">
-      <div class="update-header">
-        <i class="fas fa-bullhorn"></i>
-        <span>Latest Updates · Changelog</span>
-      </div>
-      <ul class="update-list">
-        <li>
-          <i class="fas fa-check-circle"></i>
-          <span>Fixed filtergc</span>
-        </li>
-        <li>
-          <i class="fas fa-check-circle"></i>
-          <span>Fixed isexecutorclosure</span>
-        </li>
-      </ul>
-      <div style="margin-top: 12px; font-size: 0.7rem; text-align: right; opacity: 0.7;">
-        <i class="fas fa-sync-alt"></i>  auto-updates enabled
-      </div>
-    </div>
-
-    <!-- extra meta row: status & platform -->
-    <div class="extra-meta">
-      <div class="status-badge">
-        <i class="fas fa-circle"></i>  Working
-      </div>
-      <div>
-        <i class="fab fa-windows"></i> Win 10/11  •  <i class="fas fa-microchip"></i> x64
-      </div>
-    </div>
-
-    <!-- small disclaimer -->
-    <div style="font-size: 0.65rem; text-align: center; margin-top: 1rem; color: #5d7f9e;">
-      <i class="fas fa-lock"></i> Grai
-    </div>
+  <!-- TITLE + LOGO -->
+  <div class="title-box">
+    <img src="https://s6.imgcdn.dev/YA7ZPM.png">
+    <div class="title-text">Madium Executor</div>
   </div>
+
+  <!-- INFO -->
+  <div class="info">
+    <span>Version 1.1.7</span>
+    <span>Stable</span>
+  </div>
+
+  <p style="margin-top:10px;">Free Executor For Roblox</p>
+
+  <!-- BUTTON -->
+  <a class="btn" href="https://work.ink/2nLR/madium-install" target="_blank">
+    <i class="fas fa-download"></i> DOWNLOAD
+  </a>
+
+  <!-- UPDATE -->
+  <div class="update">
+    <h3>Update</h3>
+    <ul>
+      <li>✔ Fixed filtergc</li>
+      <li>✔ Fixed isexecutorclosure</li>
+    </ul>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <span>Working</span>
+    <span>Win 10/11</span>
+  </div>
+
 </div>
 
 </body>
